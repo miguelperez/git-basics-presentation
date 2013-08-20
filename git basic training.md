@@ -17,6 +17,8 @@ We all use git, we all 'know' what git is.
 	
 	![snapshots](http://git-scm.com/figures/18333fig0105-tn.png)
     
+Git does it that way because the longer the commit history gets, the more calculation it takes to compare ranges of revisions (deltas).
+
 --
 
 1. http://git-scm.com/book/en/Getting-Started-Git-Basics
@@ -43,8 +45,8 @@ Lets work on something.
 1. Open a terminal
 2. $ mkdir git_basics
 3. $ git init
-4. $ echo "version 1" >> version
-5. $ git add version
+4. $ echo "version 1" >> miguel_perez
+5. $ git add miguel_perez
 6. $ git commit -m "adding version file"
 7. ? WTF
 
@@ -88,6 +90,87 @@ why not git pull?
 
 This sometimes includes a 'merge' commit. It clutters the github history… seems ugly.
 
-![snapshots](file://localhost/Users/miguelperez/Desktop/Screen%20Shot%202013-07-19%20at%2011.03.51%20AM.png)
+example of a repo that uses heavilly git pull
+
+![with git pull](https://raw.github.com/miguelperez/git-basics-presentation/master/images/Screen%20Shot%202013-07-19%20at%2011.03.51%20AM.png?login=miguelperez&token=cd6a52a56518789d240684387a03022f)
+
+example of a repo that uses a different git workflow.
+
+![with git fetch](https://raw.github.com/miguelperez/git-basics-presentation/master/images/Screen%20Shot%202013-07-19%20at%2011.12.49%20AM.png?login=miguelperez&token=b8279cade3974d37fa53d308831f27ee)
+
+## Lets create a local branch
+
+	git branch -b local_branch
+	
+The branch its local.
+
+## 
+
+Push it to the remote repo.
+
+	git push origin local_branch
+
+## Rename a branch
+
+	git branch -m <oldname> <newname>
+	
+If you want to rename the current branch:
+
+	git branch -m <newname>	
+	
+example:
+
+	git branch -m remove_me_later
+	
+## Push a branch to a remote repository
+
+	git push remote remove_me_later:remove_me_later
+
+The :remove_me_later tells git to push it to a branch named remove_me_later in the remote repository remove_me_later in this case is optional as we want it to have the same name.
+
+	git push remote remove_me_later
+	
+## Delete a remote branch
+
+	git push remote :branch_name_to_delete
+	
+example:
+
+	git push origin :remove_me
+	
+## So why all this commands?
+
+![lets play a game](http://d15uu3l1sro2ln.cloudfront.net/wp-content/uploads/2013/02/jigsaw-lets-play3.jpg)
 
 
+## Simple app
+
+Simple js application that needs some features… Lets all finish it together.
+
+Es una calculadora implementada en javascript en donde falta funcionalidad.
+
+## Ah, fork it!
+
+Please go to www.github.com/miguelperez/simple-calc
+
+fork it.
+
+	Now you have a repository that its a clone of mine. Clone it to your machines.
+
+## Mergetool -> this and not that!
+
+By default when fixing conflicts git will use vim for merging conflicts, we can change it to use FileMerge (a visual tool shipped with all macs).
+
+	git mergetool -t opendiff
+	
+Will open FileMerge for conflicts fixing, if we want to set it as a default tool we would:
+
+	git config --global merge.tool opendiff
+
+## explicar rebase interactivo
+
+## explicar cherry pick
+
+## explicar git reflog
+
+## explicar git reset
